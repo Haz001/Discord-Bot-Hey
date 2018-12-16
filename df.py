@@ -12,7 +12,7 @@ class meme:
     address = []
     length = 0
     def setup():
-        file = open("Meme/meme.data",'r')
+        file = open("f-data/meme.data",'r')
         cdata = (file.read())
         tdata  = cdata.split(";")
         udata = [""]
@@ -44,11 +44,17 @@ class fn:
             return False
     def gt(bn):
         if bn == 0:
-            return "Token goes here"#Hey!(navi)Bot
+            tf = open("key","r")
+            tk = tf.read().split(";")
+            tf.close()
+            return tk[0]
         elif bn == 1:
             return "Token goes here"#RPG Bot
         elif bn == 2:
-            return "Token goes here"#Bot Number 2
+            tf = open("key","r")
+            tk = tf.read().split(";")
+            tf.close()
+            return tk[1]
 
     def meme_send():
         nm = rn.randint(1,meme.length-1)
@@ -61,10 +67,10 @@ class fn:
         return (embed)
     def prehey(message):
         for i in range(len(vr.cmdc1)):
-            tmp = prefix + vr.cmdc1[i]
+            tmp = vr.prefix + vr.cmdc1[i]
             if message.content.lower().startswith(tmp):
                 return True
         return False
     def ping():
-        return "Ping: Google.co.uk\nSent: 1\nLost: "+str(os.system("ping google.co.uk -n 1"))
+        return "Ping: Google.co.uk\nSent: 1\nLost: "+str(os.system("ping google.co.uk -c 1"))
 setup()
