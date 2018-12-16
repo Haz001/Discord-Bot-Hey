@@ -28,11 +28,11 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print('Online')
-    print(await client.change_presence(game=discord.Game(name='Hello World 2')))
+    print(await client.change_presence(game=discord.Game(name='Hello World 2 (the better hello world)')))
     await client.send_message(client.get_channel('435485103653650449'),"Hey, just came online. Time to say Hi to everyone.")
 @client.event
 async def on_message(message):
-    
+
     if fn.prehey(message):
         await client.send_message(message.channel,rn.choice(vr.cmdc1))
     if fn.precom(message,"vsauce"):
@@ -44,7 +44,10 @@ async def on_message(message):
     elif fn.precom(message,"ping"):
         print("ping got")
         t = datetime.utcnow()-message.timestamp
-        await client.send_message(message.channel,"Ping Request:\n```yml\n"+fn.ping()+"\nTime_elapsed: "+str(t).split(":")[2].replace("00.","0.")+"s\nStatus: Onlineish```")
+        t2 = datetime.utcnow()
+        tmp = fn.ping();
+        t2 = datetime.utcnow()-t2
+        await client.send_message(message.channel,"Ping Request:\n```yml\n"+tmp+"\nTime1: "+str(t).split(":")[2].replace("00.","0.")+"s\nTime2: "+str(t2).split(":")[2].replace("00.","0.")+"\nStatus: Online-ish?```\nTime1 - Hey!(Navi) bot latency\nTime2 - Google.co.uk latency")
         ##print(fn.ping())
         print("ping sent")
     elif fn.precom(message,"Hey! Listen") or fn.precom(message,"hey! listen") or fn.precom(message,"hey listen") or fn.precom(message,"Hey Listen"):
@@ -58,6 +61,9 @@ async def on_message(message):
         await client.send_message(message.channel,"Hey!(Navi)\n```yml\nHelp:\nPrefix\nhey/hi/wassup/ect - Replies\nvsauce - quotes him\nicon - uploads avatar\nmeme - uploads meme\nping - hey bot says hi to google\nonline - checks if hey bot is online or not\nlb - leaderboard is printed (lag may occure)```")
     elif fn.precom(message,"online"):
         await client.send_message(message.channel,"Nope. I am offline right now. As you can clearly see.\n```yml\nStatus: Offline```")
+    elif fn.precom(message,"github"):
+        await client.send_message(message.channel,"I'm closed source!\nhttps://github.com/Haz001/Discord-Bots")
+
     elif fn.precom(message,"stats"):
         try:
             await client.send_message(message.channel,"Hey!(Navi)\n```yml\nMeme count: "+str(len(vr.memes))+"\nOfflines: "+str(oc)+"\nVersion: "+vers+"\nCoolness: 1/0\n*1/0 is infinity.```")
@@ -91,7 +97,7 @@ async def on_message(message):
 ##        file = open("log.txt",'a')
 ##        file.write(vr.logger)
 ##        vr.logger=str(cnt)
-##        
+##
 ##    elif(cnt%10000 == 0):
 ##        print("wipe")
 ##        x = open("log.txt", 'w')
