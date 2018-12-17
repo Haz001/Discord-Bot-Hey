@@ -65,9 +65,10 @@ async def on_message(message):
         await client.send_message(message.channel,"I'm closed source!\nhttps://github.com/Haz001/Discord-Bots")
     elif fn.precom(message,"stats"):
         try:
-            await client.send_message(message.channel,"Hey!(Navi)\n```yml\nMeme count: "+str(len(vr.memes))+"\nOfflines: "+str(oc)+"\nVersion: "+vers+"\nCoolness: 1/0\n*1/0 is infinity.```")
-        except:
-            print("error")
+            await client.send_message(message.channel,"Hey!(Navi)\n```yml\nMeme count: "+str(len(meme.length))+"\nOfflines: "+str(oc)+"\nVersion: "+vers+"\nCoolness: 1/0\n*1/0 is infinity.```")
+        except Exception as e:
+            await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```")
+
     elif fn.precom(message,"lb"):
         await client.send_message(message.channel,"Leaderboard:\n")
         for tmp in range(len(lids)):
