@@ -63,7 +63,6 @@ async def on_message(message):
         await client.send_message(message.channel,"Nope. I am offline right now. As you can clearly see.\n```yml\nStatus: Offline```")
     elif fn.precom(message,"github"):
         await client.send_message(message.channel,"I'm closed source!\nhttps://github.com/Haz001/Discord-Bots")
-
     elif fn.precom(message,"stats"):
         try:
             await client.send_message(message.channel,"Hey!(Navi)\n```yml\nMeme count: "+str(len(vr.memes))+"\nOfflines: "+str(oc)+"\nVersion: "+vers+"\nCoolness: 1/0\n*1/0 is infinity.```")
@@ -75,7 +74,7 @@ async def on_message(message):
             await client.send_message(message.channel,str(lids[tmp])+" - "+str(lhcs[tmp]))
     elif fn.precom(message,"update"):
 
-        await client.send_message(message.channel,"Hey bot getting update!!! Yeah! OMG, what am I going to get!")
+        await client.send_message(message.channel,"Hey(Navi) bot getting update!!! Yeah! OMG, what am I going to get!")
         try:
             os.system("python3 hey.py")
             await client.send_message(message.channel,"Error in code")
