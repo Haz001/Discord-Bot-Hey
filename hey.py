@@ -1,4 +1,4 @@
-try:
+try:#tries to import Requred scripts
     import asyncio
     import discord
     import os
@@ -49,7 +49,6 @@ async def on_message(message):
             tmp = fn.ping();
             t2 = datetime.utcnow()-t2
             await client.send_message(message.channel,"Ping Request:\n```yml\n"+tmp+"\nTime1: "+str(t).split(":")[2].replace("00.","0.")+"s\nTime2: "+str(t2).split(":")[2].replace("00.","0.")+"\nStatus: Online-ish?```\nTime1 - Hey!(Navi) bot latency\nTime2 - Google.co.uk latency")
-            ##print(fn.ping())
             print("ping sent")
         elif fn.precom(message,"Hey! Listen") or fn.precom(message,"hey! listen") or fn.precom(message,"hey listen") or fn.precom(message,"Hey Listen"):
             await client.send_message(message.channel,"OMFG Its Navi Run!!!")
@@ -93,12 +92,17 @@ async def on_message(message):
                     lhcs.append(1);
     except Exception as e:
         await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```")
-        el = open("error.log")
+        el = open("error.log",'a')
         el.write("\n"+str(e)+"\n")
         el.close()
+
+def runbot():
+    loop = asyncio.get_event_loop()
+    while True:
+        loop.run_until_complete(client.run(fn.gt(0)))
 try:
-    client.run(fn.gt(0))
+    runbot()
 except Exception as e:
-    el = open("error.log")
+    el = open("error.log",'a')
     el.write("\n"+str(e)+"\n")
     el.close()
