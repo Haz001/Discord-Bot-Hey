@@ -1,4 +1,5 @@
 try:
+    import asyncio
     import discord
     import os
     import time
@@ -6,8 +7,8 @@ try:
     from datetime import *
     import sys
     from df import *
-except:
-    print ("Error moduals not installed")
+except Exception as e:
+    print ("Error moduals not installed\n"+str(e))
     input()
     exit()
 vr.prefix = "-"
@@ -58,17 +59,13 @@ async def on_message(message):
         elif fn.precom(message,"invite"):
             await client.send_message(message.channel,"https://discordapp.com/oauth2/authorize?client_id=435477852465397760&scope=bot&permissions=523328")
         elif fn.precom(message,"help"):
-            await client.send_message(message.channel,"Hey!(Navi)\n```yml\nHelp:\nPrefix\nhey/hi/wassup/ect - Replies\nvsauce - quotes him\nicon - uploads avatar\nmeme - uploads meme\nping - hey bot says hi to google\nonline - checks if hey bot is online or not\nlb - leaderboard is printed (lag may occure)```")
+            await client.send_message(message.channel,"Hey!(Navi)\n```yml\nHelp:\nPrefix\nhey/hi/wassup/ect - Replies\nvsauce - quotes him\nicon - uploads avatar\nmeme - uploads meme\nping - hey bot says hi to google for u\nonline - checks if hey bot is online or not\nlb - leaderboard is printed (lag may occure)\nstats - prints the stats\nforce-error - forces an error```")
         elif fn.precom(message,"online"):
             await client.send_message(message.channel,"Nope. I am offline right now. As you can clearly see.\n```yml\nStatus: Offline```")
         elif fn.precom(message,"github"):
             await client.send_message(message.channel,"I'm closed source!\nhttps://github.com/Haz001/Discord-Bots")
         elif fn.precom(message,"stats"):
-            try:
-                await client.send_message(message.channel,"Hey!(Navi)\n```yml\nMeme-count: "+str((meme.length))+"\nOfflines: "+str(oc)+"\nVersion: "+vers+"\nCoolness: i\n*i is an imaginary number, you can't get any cooler than that (&#x221a;(-1) = i).```")
-            except Exception as e:
-                await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```")
-
+            await client.send_message(message.channel,"Hey!(Navi)\n```yml\nMeme-count: "+str((meme.length))+"\nOfflines: "+str(oc)+"\nVersion: "+vers+"\nCoolness: i\n*i is an imaginary number, you can't get any cooler than that (√(-1) = i).```")
         elif fn.precom(message,"lb"):
             await client.send_message(message.channel,"Leaderboard:\n")
             for tmp in range(len(lids)):
@@ -83,7 +80,7 @@ async def on_message(message):
                 print("error")
                 await client.send_message(message.channel,"Failed to start")
         elif fn.precom(message,"force-error"):
-            await client.send_message(message.channel,"&#654;&#477;H")
+            await client.send_message(message.channel,"ʎǝH")
             print(""+25)
         else:
             print("none "+message.content)
@@ -96,17 +93,12 @@ async def on_message(message):
                     lhcs.append(1);
     except Exception as e:
         await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```")
-##    vr.logger+= "----<New Message>----\nSender - "+str(message.author.name)+"\nMessage - "+message.content+"\nDate: "+str(datetime.date.today())+"\n----<End of message>----\n"
-##    if(cnt%100 == 0):
-##        print("Saving!")
-##        file = open("log.txt",'a')
-##        file.write(vr.logger)
-##        vr.logger=str(cnt)
-##
-##    elif(cnt%10000 == 0):
-##        print("wipe")
-##        x = open("log.txt", 'w')
-##        x.close()
-##        x = 0;
-
-client.run(fn.gt(0))
+        el = open("error.log")
+        el.write("\n"+str(e)+"\n")
+        el.close()
+try:
+    client.run(fn.gt(0))
+except Exception as e:
+    el = open("error.log")
+    el.write("\n"+str(e)+"\n")
+    el.close()

@@ -22,7 +22,7 @@ class meme:
             i+=1;
         i = 0
         while i < (len(udata)):
-            
+
             tmp = (udata[i].split("#"))
             if(len(tmp)>=2):
                 meme.tag.append(tmp[0])
@@ -30,7 +30,7 @@ class meme:
                 print(tmp[0]+" - "+tmp[1])
             i+=1;
         meme.length = len(meme.address)
- 
+
 class vr:
     prefix = "'"
     #comand collection 1
@@ -44,14 +44,14 @@ class fn:
             return False
     def gt(bn):
         if bn == 0:
-            tf = open("key","r")
+            tf = open("../key","r")
             tk = tf.read().split(";")
             tf.close()
             return tk[0]
         elif bn == 1:
             return "Token goes here"#RPG Bot
         elif bn == 2:
-            tf = open("key","r")
+            tf = open("../key","r")
             tk = tf.read().split(";")
             tf.close()
             return tk[1]
