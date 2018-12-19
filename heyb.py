@@ -62,6 +62,12 @@ async def on_message(message):
 
         await client.change_presence(game=discord.Game(name=message.content.replace(vr.prefix+"status","")))
     ##
+    elif fn.precom(message,"kill"):
+        await client.send_message(message.channel,"This is murder!"))
+        quit()
+        exit()
+        
+
     for x in range(len(vr.cmdc1)):
         if (vr.cmdc1[x] in message.content.lower().replace("-","").split(" ")):
             if message.author.name in lids:

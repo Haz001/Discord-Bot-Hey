@@ -14,8 +14,8 @@ except Exception as e:
 vr.prefix = "-"
 client = discord.Client()
 oc = 0
-lids = []
-lhcs = []
+lids = ["Bot_Number_2"]
+lhcs = [4545656465.3]
 file = open("ver",'r')
 vers = file.read();
 vr.lst_day = 0;
