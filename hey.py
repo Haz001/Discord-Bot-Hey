@@ -7,6 +7,7 @@ try:#tries to import Requred scripts
     from datetime import *
     import sys
     from df import *
+    import platform
 except Exception as e:
     print ("Error moduals not installed\n"+str(e))
     input()
@@ -30,7 +31,7 @@ async def on_ready():
     print(client.user.id)
     print('Online')
     print(await client.change_presence(game=discord.Game(name='Hello World 2 (the better hello world)')))
-    await client.send_message(client.get_channel('435485103653650449'),"Hey, just came online. Time to say Hi to everyone.")
+    await client.send_message(client.get_channel('435485103653650449'),"Hey, just came online. Time to say Hi to everyone.\n```yml\nOS: "+str(platform.system())+"\n```")
 @client.event
 async def on_message(message):
     try:
@@ -53,7 +54,7 @@ async def on_message(message):
         elif fn.precom(message,"Hey! Listen") or fn.precom(message,"hey! listen") or fn.precom(message,"hey listen") or fn.precom(message,"Hey Listen"):
             await client.send_message(message.channel,"OMFG Its Navi Run!!!")
             time.sleep(5)
-        elif "<@!445009498927661079>" in message.content:
+        elif "<@445009498927661079>" in message.content:
             await client.send_message(message.channel,"Hey!")
         elif fn.precom(message,"invite"):
             await client.send_message(message.channel,"https://discordapp.com/oauth2/authorize?client_id=435477852465397760&scope=bot&permissions=523328")
@@ -66,21 +67,29 @@ async def on_message(message):
         elif fn.precom(message,"stats"):
             await client.send_message(message.channel,"Hey!(Navi)\n```yml\nMeme-count: "+str((meme.length))+"\nOfflines: "+str(oc)+"\nVersion: "+vers+"\nCoolness: i\n*i is an imaginary number, you can't get any cooler than that (√(-1) = i).```")
         elif fn.precom(message,"lb"):
-            await client.send_message(message.channel,"Leaderboard:\n")
+
+            tmpx = str()
             for tmp in range(len(lids)):
-                await client.send_message(message.channel,str(lids[tmp])+" - "+str(lhcs[tmp]))
+                tmpx += str("\n"+str(lids[tmp])+": "+str(lhcs[tmp]))
+            await client.send_message(message.channel,"```yml\nLeaderboard:\n"+tmpx+"```")
         elif fn.precom(message,"update"):
 
             await client.send_message(message.channel,"Hey(Navi) bot getting update!!! Yeah! OMG, what am I going to get!")
             try:
-                os.system("python3 hey.py")
+                if(platform.system() == 'Linux'):
+                    os.system("python3 hey.py")
+                elif(platform.system() == 'Windows'):
+                    os.system("py hey.py")
+                else:
+                    await client.send_message(message.channel,"I was never built to run on a "+str(platform.system()))
                 await client.send_message(message.channel,"Error in code")
             except:
                 print("error")
+
                 await client.send_message(message.channel,"Failed to start")
         elif fn.precom(message,"force-error"):
             await client.send_message(message.channel,"ʎǝH")
-            print(""+25)
+            int("ʎǝH")
         else:
             print("none "+message.content)
         for tmp in range(len(vr.cmdc1)):
@@ -90,6 +99,8 @@ async def on_message(message):
                 else:
                     lids.append(message.author.name);
                     lhcs.append(1);
+        print(lids)
+        print(lhcs)
     except Exception as e:
         await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```")
         el = open("error.log",'a')
@@ -100,6 +111,7 @@ def runbot():
     loop = asyncio.get_event_loop()
     while True:
         loop.run_until_complete(client.run(fn.gt(0)))
+
 try:
     runbot()
 except Exception as e:
