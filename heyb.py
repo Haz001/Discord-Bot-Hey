@@ -60,7 +60,7 @@ async def on_message(message):
             await client.send_message(message.channel,"```yml\nToggle: Log Function\nValue: "+str(toggles["log"])+"```")
     elif fn.precom(message, "status"):
 
-        await client.change_presence(game=discord.Game(name=message.content.replace("b-status ","")))
+        await client.change_presence(game=discord.Game(name=message.content.replace(vr.prefix+"status","")))
     ##
     for x in range(len(vr.cmdc1)):
         if (vr.cmdc1[x] in message.content.lower().replace("-","").split(" ")):
@@ -70,17 +70,17 @@ async def on_message(message):
                 lids.append(message.author.name);
                 lhcs.append(1);
 
-    # if (toggles["log"]):
-    #     log.log_t += "\n=====( new message )=====\nNumber: "+str(log.log_c)+"\nAccount: "+message.author.name+"\nMessage:\n"+message.content+"\n----(end of message)----"
-    #     print("\n=====( new message )=====\nNumber: "+str(log.log_c)+"\nAccount: "+message.author.name+"\nMessage:\n"+message.content+"\n----(end of message)----")
-    #     log.log_c += 1
-    #     if ((log.log_c % 10)==0):
-    #         if ((log.log_c % 10000)==0):
-    #             log.log_t = ""
-    #         file = open(log.log_p,'w')
-    #         file.write(log.log_t)
-    #         file.close()
-    #         print("log")
+    if (toggles["log"]):
+        log.log_t += "\n=====( new message )=====\nNumber: "+str(log.log_c)+"\nAccount: "+message.author.name+"\nMessage:\n"+message.content+"\n----(end of message)----"
+        print("\n=====( new message )=====\nNumber: "+str(log.log_c)+"\nAccount: "+message.author.name+"\nMessage:\n"+message.content+"\n----(end of message)----")
+        log.log_c += 1
+        if ((log.log_c % 10)==0):
+            if ((log.log_c % 10000)==0):
+                log.log_t = ""
+            file = open(log.log_p,'w')
+            file.write(log.log_t)
+            file.close()
+            print("log")
 
 
 client.run(fn.gt(0))
