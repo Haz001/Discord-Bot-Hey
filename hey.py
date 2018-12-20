@@ -96,21 +96,29 @@ async def on_message(message):
             if (vr.cmdc1[tmp] in message.content.lower().split(" ")):
                 if message.author.name in lids:
                     lhcs[lids.index(message.author.name)] += 1;
+                    if(lhcs[lids.index(message.author.name)] % 10)==0:
+                        await client.send_message(message.channel,"Level Up!\n:arrow_up:"+message.author.name+" > "+str(lhcs[lids.index(message.author.name)] /10))
                 else:
                     lids.append(message.author.name);
                     lhcs.append(1);
         print(lids)
         print(lhcs)
     except Exception as e:
-        await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```")
+        await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```\nTo report the error go to: https://discord.gg/djFFREv")
         el = open("error.log",'a')
         el.write("\n"+str(e)+"\n")
         el.close()
 
 def runbot():
     loop = asyncio.get_event_loop()
-    while True:
-        loop.run_until_complete(client.run(fn.gt(0)))
+    try:
+        while True:
+            loop.run_until_complete(client.run(fn.gt(0)))
+    except:
+        if(platform.system() == 'Linux'):
+            os.system("python3 hey.py")
+        elif(platform.system() == 'Windows'):
+            os.system("py hey.py")
 
 try:
     runbot()
