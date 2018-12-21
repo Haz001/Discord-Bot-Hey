@@ -22,8 +22,9 @@ vers = file.read();
 vr.lst_day = 0;
 cnt=0
 
-
-
+class ping:
+    uniqueid = None
+    old = None
 @client.event
 async def on_ready():
     print('Logged in as')
@@ -45,11 +46,10 @@ async def on_message(message):
             await client.send_message(message.channel,embed=fn.meme_send())
         elif fn.precom(message,"ping"):
             print("ping got")
+            old = message.timestamp
             t = datetime.utcnow()-message.timestamp
-            t2 = datetime.utcnow()
-            tmp = fn.ping();
-            t2 = datetime.utcnow()-t2
-            await client.send_message(message.channel,"Ping Request:\n```yml\n"+tmp+"\nTime1: "+str(t).split(":")[2].replace("00.","0.")+"s\nTime2: "+str(t2).split(":")[2].replace("00.","0.")+"\nStatus: Online-ish?```\nTime1 - Hey!(Navi) bot latency\nTime2 - Google.co.uk latency")
+            uniqueid = hex(rn.randint(1000,9999))
+            await client.send_message(message.channel,"Ping Request:\n```yml\nUser: "+message.author.name+";\nSize: "+str(len(message.content))+";\nRecieved-Latency: "+str(t).split(":")[2].replace("00.","0.")+"s\n"+uniqueid)
             print("ping sent")
         elif fn.precom(message,"Hey! Listen") or fn.precom(message,"hey! listen") or fn.precom(message,"hey listen") or fn.precom(message,"Hey Listen"):
             await client.send_message(message.channel,"OMFG Its Navi Run!!!")
