@@ -22,9 +22,11 @@ vers = file.read();
 vr.lst_day = 0;
 cnt=0
 
-class ping:
-    uniqueid = None
+class pingc:
+    uniqueid = "ID is not this"
     old = None
+    old2 = None
+    pis = False
 @client.event
 async def on_ready():
     print('Logged in as')
@@ -32,10 +34,18 @@ async def on_ready():
     print(client.user.id)
     print('Online')
     print(await client.change_presence(game=discord.Game(name='Hello World 2 (the better hello world)')))
-    await client.send_message(client.get_channel('489502051919724557'),"Hey, just came online. Time to say Hi to everyone.\n```yml\nOS: "+str(platform.system())+"\n```")
+    await client.send_message(client.get_channel('438028465921589250'),"Hey, just came online. Time to say Hi to everyone.\n```yml\nOS: "+str(platform.system())+"\n```")
 @client.event
 async def on_message(message):
     try:
+        if pingc.pis and pingc.uniqueid in message.content:
+            t = datetime.utcnow()-pingc.old
+            t2 = datetime.utcnow()-pingc.old2
+            if ("basic" in message.content):
+                await client.edit_message(message,"Ping Requested:\n```yml\nLatency: "+str(t).split(":")[2]+"s```")
+            else:
+                await client.edit_message(message,message.content.replace("\nID-Tag: "+pingc.uniqueid,"")+"\nSend-Latency: "+str(t2).split(":")[2]+"s\nTotal-Latency: "+str(t).split(":")[2]+"s\nID-Tag: "+pingc.uniqueid+"```")
+            pingc.pis = False
         if fn.prehey(message):
             await client.send_message(message.channel,rn.choice(vr.cmdc1))
         if fn.precom(message,"vsauce"):
@@ -45,12 +55,15 @@ async def on_message(message):
         elif fn.precom(message,"meme"):
             await client.send_message(message.channel,embed=fn.meme_send())
         elif fn.precom(message,"ping"):
-            print("ping got")
-            old = message.timestamp
-            t = datetime.utcnow()-message.timestamp
-            uniqueid = hex(rn.randint(1000,9999))
-            await client.send_message(message.channel,"Ping Request:\n```yml\nUser: "+message.author.name+";\nSize: "+str(len(message.content))+";\nRecieved-Latency: "+str(t).split(":")[2].replace("00.","0.")+"s\n"+uniqueid)
-            print("ping sent")
+            pingc.pis = True
+            pingc.old = message.timestamp
+            pingc.uniqueid = str(hex(rn.randint(1000,9999)))
+            pingc.old2 = datetime.utcnow()
+            if("-d" in message.content):
+                t = datetime.utcnow()-message.timestamp
+                await client.send_message(message.channel,"Ping Request:\n```yml\nUser: "+message.author.name+";\nSize: "+str(len(message.content))+";\nRecieved-Latency: "+str(t).split(":")[2]+"s\nID-Tag: "+pingc.uniqueid)
+            else:
+                await client.send_message(message.channel, "basic"+pingc.uniqueid)
         elif fn.precom(message,"Hey! Listen") or fn.precom(message,"hey! listen") or fn.precom(message,"hey listen") or fn.precom(message,"Hey Listen"):
             await client.send_message(message.channel,"OMFG Its Navi Run!!!")
             time.sleep(5)
@@ -85,13 +98,11 @@ async def on_message(message):
                 await client.send_message(message.channel,"Error in code")
             except:
                 print("error")
-
                 await client.send_message(message.channel,"Failed to start")
         elif fn.precom(message,"force-error"):
             await client.send_message(message.channel,"ʎǝH")
             int("ʎǝH")
-        else:
-            print("none "+message.content)
+
         for tmp in range(len(vr.cmdc1)):
             if (vr.cmdc1[tmp] in message.content.lower().split(" ")):
                 if message.author.name in lids:
@@ -101,8 +112,7 @@ async def on_message(message):
                 else:
                     lids.append(message.author.name);
                     lhcs.append(1);
-        print(lids)
-        print(lhcs)
+
     except Exception as e:
         await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```\nTo report the error go to: https://discord.gg/djFFREv")
         el = open("error.log",'a')
@@ -111,19 +121,15 @@ async def on_message(message):
 
 def runbot():
     loop = asyncio.get_event_loop()
-    try:
-        while True:
-            loop.run_until_complete(client.run(fn.gt(0)))
-    except:
-        runbot()
+    while True:
+        loop.run_until_complete(client.run(fn.gt(0)))
 
-try:
-    runbot()
-except Exception as e:
-    el = open("error.log",'a')
-    el.write("\n"+str(e)+"\n")
-    el.close()
-    if(platform.system() == 'Linux'):
-        os.system("python3 hey.py")
-    elif(platform.system() == 'Windows'):
-        os.system("py hey.py")
+while True:
+    try:
+        runbot()
+    except Exception as e:
+        el = open("error.log",'a')
+        el.write("\n"+str(e)+"\n")
+        el.close()
+        oc += 1
+        runbot()
