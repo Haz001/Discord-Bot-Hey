@@ -32,7 +32,7 @@ async def on_ready():
     print(client.user.id)
     print('Online')
     print(await client.change_presence(game=discord.Game(name='Hello World 2 (the better hello world)')))
-    await client.send_message(client.get_channel('435485103653650449'),"Hey, just came online. Time to say Hi to everyone.\n```yml\nOS: "+str(platform.system())+"\n```")
+    await client.send_message(client.get_channel('489502051919724557'),"Hey, just came online. Time to say Hi to everyone.\n```yml\nOS: "+str(platform.system())+"\n```")
 @client.event
 async def on_message(message):
     try:
@@ -115,10 +115,7 @@ def runbot():
         while True:
             loop.run_until_complete(client.run(fn.gt(0)))
     except:
-        if(platform.system() == 'Linux'):
-            os.system("python3 hey.py")
-        elif(platform.system() == 'Windows'):
-            os.system("py hey.py")
+        runbot()
 
 try:
     runbot()
@@ -126,3 +123,7 @@ except Exception as e:
     el = open("error.log",'a')
     el.write("\n"+str(e)+"\n")
     el.close()
+    if(platform.system() == 'Linux'):
+        os.system("python3 hey.py")
+    elif(platform.system() == 'Windows'):
+        os.system("py hey.py")
