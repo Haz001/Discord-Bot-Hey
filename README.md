@@ -20,6 +20,6 @@ me: -hi
 bot: wassup
 ```
 ## Rules:
-### Don't steel them
+### Don't steel code
 ### Don't sell code
 ### Don't forget to credit me @Haz001
