@@ -71,6 +71,11 @@ async def on_message(message):
             await client.send_message(message.channel,"Hey!")
         elif fn.precom(message,"invite"):
             await client.send_message(message.channel,"https://discordapp.com/oauth2/authorize?client_id=435477852465397760&scope=bot&permissions=523328")
+        elif fn.precom(message,"merry christmas") or fn.precom(message,"merry xmas"):
+            await client.send_message(message.channel,"Merry Christmas!")
+        elif fn.precom(message,"react"):
+            with open(react.get(str(message.content)), 'rb') as f:
+                await client.send_file(message.channel, f)
         elif fn.precom(message,"help"):
             await client.send_message(message.channel,"Hey!(Navi)\n```yml\nHelp:\nPrefix\nhey/hi/wassup/ect - Replies\nvsauce - quotes him\nicon - uploads avatar\nmeme - uploads meme\nping - hey bot says hi to google for u\nonline - checks if hey bot is online or not\nlb - leaderboard is printed (lag may occure)\nstats - prints the stats\nforce-error - forces an error```")
         elif fn.precom(message,"online"):
@@ -120,16 +125,18 @@ async def on_message(message):
         el.close()
 
 def runbot():
-    loop = asyncio.get_event_loop()
-    while True:
-        loop.run_until_complete(client.run(fn.gt(0)))
-
-while True:
     try:
-        runbot()
+        while True:
+            loop = asyncio.get_event_loop()
+            loop.run_until_complete(client.run(fn.gt(0)))
+            oc += 1
     except Exception as e:
         el = open("error.log",'a')
         el.write("\n"+str(e)+"\n")
         el.close()
-        oc += 1
-        runbot()
+        if(platform.system() == 'Linux'):
+            os.system("python3 hey.py")
+        elif(platform.system() == 'Windows'):
+            os.system("py hey.py")
+
+runbot()

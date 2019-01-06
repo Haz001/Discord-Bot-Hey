@@ -5,6 +5,7 @@ import random as rn
 def setup():
     print("\n\n=====< Discord Functions Modual >=====\n")
     meme.setup()
+    react.setup()
     print("-----< Memes >-----\n>Status: Loaded\n>Count: "+str((meme.length)))
 
 class meme:
@@ -14,6 +15,7 @@ class meme:
     def setup():
         file = open("f-data/meme.data",'r')
         cdata = (file.read())
+        file.close()
         tdata  = cdata.split(";")
         udata = [""]
         i = 0
@@ -22,7 +24,6 @@ class meme:
             i+=1;
         i = 0
         while i < (len(udata)):
-
             tmp = (udata[i].split("#"))
             if(len(tmp)>=2):
                 meme.tag.append(tmp[0])
@@ -30,6 +31,22 @@ class meme:
                 print(tmp[0]+" - "+tmp[1])
             i+=1;
         meme.length = len(meme.address)
+class react:
+    address = []
+    def setup():
+        file = open("f-data/reactions.txt")
+        data = file.read()
+        react.address = data.split(";")
+        file.close()
+    def get(call):
+        try:
+            for i in range(len(react.address)):
+                print(react.address[i] + call)
+                if (react.address[i] in call):
+                    return "f-data/react/"+react.address[i]+".png"
+            return "f-data/react/what.png"
+        except:
+            return "f-data/react/Links.png"
 
 class vr:
     prefix = "'"
