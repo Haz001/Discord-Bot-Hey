@@ -14,14 +14,14 @@ except Exception as e:
     exit()
 vr.prefix = "-"
 client = discord.Client()
-oc = 0
 lids = ["Bot_Number_2"]
 lhcs = [4545656465.3]
 file = open("ver",'r')
 vers = file.read();
 vr.lst_day = 0;
 cnt=0
-
+class var:
+    oc = 0
 class pingc:
     uniqueid = "ID is not this"
     old = None
@@ -74,16 +74,18 @@ async def on_message(message):
         elif fn.precom(message,"merry christmas") or fn.precom(message,"merry xmas"):
             await client.send_message(message.channel,"Merry Christmas!")
         elif fn.precom(message,"react"):
+            if("-h" in message.content):
+                await client.send_message(message.channel,"```yml\nreact <name>\n<name> = cool, cry, fight, happy, high, mad, plz, really, sad, sleep, suprised and what```")
             with open(react.get(str(message.content)), 'rb') as f:
                 await client.send_file(message.channel, f)
         elif fn.precom(message,"help"):
-            await client.send_message(message.channel,"Hey!(Navi)\n```yml\nHelp:\nPrefix\nhey/hi/wassup/ect - Replies\nvsauce - quotes him\nicon - uploads avatar\nmeme - uploads meme\nping - hey bot says hi to google for u\nonline - checks if hey bot is online or not\nlb - leaderboard is printed (lag may occure)\nstats - prints the stats\nforce-error - forces an error```")
+            await client.send_message(message.channel,"Hey!(Navi)\n```yml\n Help:\nPrefix        -> '"+vr.prefix+"'\nhey/hi/yo/ect -> Replies\nvsauce        -> quotes him\nicon          -> uploads avatar\nmeme          -> uploads meme\nping          -> check response time\nping -d       -> for debug response message that includes more info\nonline        -> checks if hey bot is online or not\nlb            -> leaderboard is printed (lag may occure)\nreact <name>  -> uploads reaction of choice \nstats         -> prints the stats;\nforce-error   -> forces an error```")
         elif fn.precom(message,"online"):
             await client.send_message(message.channel,"Nope. I am offline right now. As you can clearly see.\n```yml\nStatus: Offline```")
         elif fn.precom(message,"github"):
             await client.send_message(message.channel,"I'm closed source!\nhttps://github.com/Haz001/Discord-Bots")
         elif fn.precom(message,"stats"):
-            await client.send_message(message.channel,"Hey!(Navi)\n```yml\nMeme-count: "+str((meme.length))+"\nOfflines: "+str(oc)+"\nVersion: "+vers+"\nCoolness: i\n*i is an imaginary number, you can't get any cooler than that (√(-1) = i).```")
+            await client.send_message(message.channel,"Hey!(Navi)\n```yml\nMeme-count: "+str((meme.length))+"\nOfflines: "+str(var.oc)+"\nVersion: "+vers+"\nCoolness: i\n*i is an imaginary number, you can't get any cooler than that (√(-1) = i).```")
         elif fn.precom(message,"lb"):
 
             tmpx = str()
@@ -125,18 +127,19 @@ async def on_message(message):
         el.close()
 
 def runbot():
-    try:
-        while True:
-            loop = asyncio.get_event_loop()
-            loop.run_until_complete(client.run(fn.gt(0)))
-            oc += 1
-    except Exception as e:
-        el = open("error.log",'a')
-        el.write("\n"+str(e)+"\n")
-        el.close()
-        if(platform.system() == 'Linux'):
-            os.system("python3 hey.py")
-        elif(platform.system() == 'Windows'):
-            os.system("py hey.py")
+    while True:
 
-runbot()
+        loop = asyncio.get_event_loop()
+        while True:
+            loop.run_until_complete(client.run(fn.gt(0)))
+        var.oc += 1
+try:
+    runbot()
+except Exception as e:
+    el = open("error.log",'a')
+    el.write("\n"+str(e)+"\n")
+    el.close()
+    if(platform.system() == 'Linux'):
+        os.system("python3 hey.py")
+    elif(platform.system() == 'Windows'):
+        os.system("py hey.py")
