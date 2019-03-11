@@ -6,6 +6,7 @@ try:#tries to import Requred scripts
     import random as rn
     from datetime import *
     import sys
+    import display as disp
     from df import *
     import platform
 except Exception as e:
@@ -20,6 +21,7 @@ file = open("ver",'r')
 vers = file.read();
 vr.lst_day = 0;
 cnt=0
+scr = disp.disp()
 class var:
     oc = 0
 class pingc:
@@ -119,19 +121,25 @@ async def on_message(message):
                 else:
                     lids.append(message.author.name);
                     lhcs.append(1);
+        scr.addmsg(message.content.replace("\n","\\n"))
+
 
     except Exception as e:
         await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```\nTo report the error go to: https://discord.gg/djFFREv")
         el = open("error.log",'a')
         el.write("\n"+str(e)+"\n")
         el.close()
+        scr.addmsg(e.replace("\n","\\n"))
+    print("draw")
+    scr.draw()
 
 def runbot():
     while True:
-
         loop = asyncio.get_event_loop()
         while True:
             loop.run_until_complete(client.run(fn.gt(0)))
+        scr.info.Status = "Restarting Loop"
+        scr.draw()
         var.oc += 1
 try:
     runbot()
