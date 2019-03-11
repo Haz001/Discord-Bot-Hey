@@ -20,7 +20,7 @@ class disp(object):
     class config:
         char = 9608
         length = 150#on raspberry pi 170
-        height = 47#on raspberry pi 48
+        height = 48#on raspberry pi 48
         offset = 1#2 to see last command
 
     class info:

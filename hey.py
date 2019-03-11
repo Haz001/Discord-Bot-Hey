@@ -13,7 +13,11 @@ except Exception as e:
     print ("Error moduals not installed\n"+str(e))
     input()
     exit()
+scr = disp.disp()
+scr.draw()
 vr.prefix = "-"
+scr.draw()
+scr.info.Prefix = vr.prefix
 client = discord.Client()
 lids = ["Bot_Number_2"]
 lhcs = [4545656465.3]
@@ -21,7 +25,7 @@ file = open("ver",'r')
 vers = file.read();
 vr.lst_day = 0;
 cnt=0
-scr = disp.disp()
+
 class var:
     oc = 0
 class pingc:
@@ -33,6 +37,8 @@ class pingc:
 async def on_ready():
     print('Logged in as')
     print(client.user.name)
+    scr.name = client.user.name
+    scr.draw()
     print(client.user.id)
     print('Online')
     print(await client.change_presence(game=discord.Game(name='Hello World 2 (the better hello world)')))
@@ -122,7 +128,7 @@ async def on_message(message):
                     lids.append(message.author.name);
                     lhcs.append(1);
         scr.addmsg(message.content.replace("\n","\\n"))
-
+        
 
     except Exception as e:
         await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```\nTo report the error go to: https://discord.gg/djFFREv")
