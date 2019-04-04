@@ -11,7 +11,17 @@ class draw:
         return msg
     def info(msg,width,self):
         text = msg
-        msg = chr(self.config.char)+text+(" "*(width-(len(text)+1)))+chr(self.config.char)*(self.config.length-width)
+        #msg = chr(self.config.char)+text+(" "*(width-(len(text)+1)))+chr(self.config.char)*(self.config.length-width)
+        txt = chr(self.config.char)
+        for i in range(width-1):
+            if len(text)>i:
+                txt+=text[i]
+            else:
+                txt+="#"
+        for i in range(self.config.length - width):
+            txt+=chr(self.config.char)
+
+        msg = txt
         return msg
 
 class disp(object):
@@ -24,14 +34,15 @@ class disp(object):
         offset = 1#2 to see last command
 
     class info:
-        msg = []
-        sender = []
-        status =       "Unknown"
-        Prefix =       "Unknown"
-        Verison =      "Unknown"
-        LastCMD =      "Unknown"
-        LastResponse = "Unknown"
-        LastError =    "Unknown"
+        msg =           []
+        sender =        []
+        status =        "Unknown"
+        Prefix =        "Unknown"
+        Verison =       "Unknown"
+        LastCMD =       "Unknown"
+        LastResponse =  "Unknown"
+        LastError =     "Unknown"
+        DisplayVer =    "Unknown"
 
     def addmsg(self,msg):
         self.info.msg.append(msg)
@@ -49,8 +60,13 @@ class disp(object):
         print(chr(self.config.char)*self.config.length)
         h-=2
         for i in range(20):
-            if (i in range(len(self.info.msg))):
-                print(draw.info(str(i)+" - "+self.info.msg[i],100,self))
+            j = i
+            self.info.status = "j; "+str(j)+"|i: "+str(i)
+            if len(self.info.msg) > 20:
+
+                j = len(self.info.msg)-20+i
+            if (j in range(len(self.info.msg))):
+                print(draw.info(str(j)+" - "+self.info.msg[j],100,self))
             else:
                 print(self.config.length*chr(self.config.char))
             h-=1
@@ -60,14 +76,14 @@ class disp(object):
         print(chr(self.config.char)*self.config.length)
         h-=3
         leng = 30
-        print(draw.info("Name:          "+self.name,leng,self))
-        print(draw.info("Status:        "+self.info.status,leng,self))
-        print(draw.info("Prefix:        "+self.info.Prefix,leng,self))
-        print(draw.info("Version:       "+self.info.Verison,leng,self))
-        print(draw.info("LasdCMD:       "+self.info.LastCMD,leng,self))
-        print(draw.info("LastResponse:  "+self.info.LastResponse,leng,self))
-        print(draw.info("LastError:     "+self.info.LastError,leng,self))
-
+        print(draw.info("Name:           "+self.name,leng,self))
+        print(draw.info("Status:         "+self.info.status,leng,self))
+        print(draw.info("Prefix:         "+self.info.Prefix,leng,self))
+        print(draw.info("Version:        "+self.info.Verison,leng,self))
+        print(draw.info("LasdCMD:        "+self.info.LastCMD,leng,self))
+        print(draw.info("LastResponse:   "+self.info.LastResponse,leng,self))
+        print(draw.info("LastError:      "+self.info.LastError,leng,self))
+        print(draw.info("DisplayVerison: "+self.info.Verison,leng,self))
         h-=7
         while (h>0):
             print(chr(self.config.char)*self.config.length)

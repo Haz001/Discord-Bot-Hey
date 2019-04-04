@@ -42,7 +42,7 @@ async def on_ready():
     print(client.user.id)
     print('Online')
     print(await client.change_presence(game=discord.Game(name='Hello World 2 (the better hello world)')))
-    await client.send_message(client.get_channel('438028465921589250'),"Hey, just came online. Time to say Hi to everyone.\n```yml\nOS: "+str(platform.system())+"\n```")
+    await client.send_message(client.get_channel('489502051919724557'),"Hey, just came online. Time to say Hi to everyone.\n```yml\nOS: "+str(platform.system())+"\n```")
 @client.event
 async def on_message(message):
     try:
@@ -128,7 +128,7 @@ async def on_message(message):
                     lids.append(message.author.name);
                     lhcs.append(1);
         scr.addmsg(message.content.replace("\n","\\n"))
-        
+
 
     except Exception as e:
         await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```\nTo report the error go to: https://discord.gg/djFFREv")
