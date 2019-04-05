@@ -140,20 +140,33 @@ async def on_message(message):
     scr.draw()
 
 def runbot():
-    while True:
-        loop = asyncio.get_event_loop()
+    try:
         while True:
-            loop.run_until_complete(client.run(fn.gt(0)))
-        scr.info.Status = "Restarting Loop"
-        scr.draw()
-        var.oc += 1
-try:
-    runbot()
-except Exception as e:
-    el = open("error.log",'a')
-    el.write("\n"+str(e)+"\n")
-    el.close()
-    if(platform.system() == 'Linux'):
+            loop = asyncio.get_event_loop()
+            try:
+                loop.run_until_complete(client.run(fn.gt(0)))
+            except Exception as e:
+                scr.addmsg(str(e).replace("\n","\\n"))
+                scr.addmsg('Attempting to reboot in 30 seconds')
+                loop=None
+                time.sleep(30)
+    except:
         os.system("python3 hey.py")
-    elif(platform.system() == 'Windows'):
-        os.system("py hey.py")
+runbot()
+#     while True:
+#         loop = asyncio.get_event_loop()
+#         while True:
+#             loop.run_until_complete(client.run(fn.gt(0)))
+#         scr.info.Status = "Restarting Loop"
+#         scr.draw()
+#         var.oc += 1
+# try:
+#     runbot()
+# except Exception as e:
+#     el = open("error.log",'a')
+#     el.write("\n"+str(e)+"\n")
+#     el.close()
+#     if(platform.system() == 'Linux'):
+#         os.system("python3 hey.py")
+#     elif(platform.system() == 'Windows'):
+#         os.system("py hey.py")
