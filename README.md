@@ -3,7 +3,7 @@ A [Discord](http://discord.gg) Bot I made with Python.<br/>
 [Click here](https://discordapp.com/api/oauth2/authorize?client_id=538309371722072065&permissions=8&scope=bot) to add to server.
 ## What does it do
 ```yml
-Prefix: -
+Prefix: '-'
 hey/hi/wassup/ect:  Replies
 vsauce:             quotes him
 icon:               uploads avatar
