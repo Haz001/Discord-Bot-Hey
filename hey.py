@@ -1,4 +1,4 @@
-try:#tries to import Requred scripts
+try:#tries to import Requred d.scripts
     import asyncio
     import discord
     import os
@@ -13,11 +13,22 @@ except Exception as e:
     print ("Error moduals not installed\n"+str(e))
     input()
     exit()
-scr = disp.disp()
-scr.draw()
+
+class d:
+    scr = None
+class var:
+    oc = 0
+class pingc:
+    uniqueid = "ID is not this"
+    old = None
+    old2 = None
+    pis = False
+
+d.scr = disp.disp()
+d.scr.draw()
 vr.prefix = "-"
-scr.draw()
-scr.info.Prefix = vr.prefix
+d.scr.draw()
+d.scr.info.Prefix = vr.prefix
 client = discord.Client()
 lids = ["Bot_Number_2"]
 lhcs = [4545656465.3]
@@ -26,26 +37,25 @@ vers = file.read();
 vr.lst_day = 0;
 cnt=0
 
-class var:
-    oc = 0
-class pingc:
-    uniqueid = "ID is not this"
-    old = None
-    old2 = None
-    pis = False
 @client.event
 async def on_ready():
     print('Logged in as')
     print(client.user.name)
-    scr.name = client.user.name
-    scr.draw()
+    d.scr.name = client.user.name
+    d.scr.draw()
     print(client.user.id)
     print('Online')
     print(await client.change_presence(game=discord.Game(name='Hello World 2 (the better hello world)')))
     await client.send_message(client.get_channel('489502051919724557'),"Hey, just came online. Time to say Hi to everyone.\n```yml\nOS: "+str(platform.system())+"\n```")
+
 @client.event
-async def on_message(message):
+async def on_message(message):#this is way to long. Need to steal from RogueSensei again.
     try:
+        if str(message.content)[0] == "-":
+            d.scr.addmsg(str(message.author)+": "+message.content.replace("\n","\\n"))
+
+        if str(message.content)[0] == "-":
+            d.scr.addmsg(str(message.author)+": "+message.content.replace("\n","\\n"))
         if pingc.pis and pingc.uniqueid in message.content:
             t = datetime.utcnow()-pingc.old
             t2 = datetime.utcnow()-pingc.old2
@@ -114,6 +124,10 @@ async def on_message(message):
             except:
                 print("error")
                 await client.send_message(message.channel,"Failed to start")
+        elif fn.precom(message,"display-update"):
+            await client.send_message(message.channel,"Updating")
+            d.scr = disp.disp()
+            await client.send_message(message.channel,"Updated")
         elif fn.precom(message,"force-error"):
             await client.send_message(message.channel,"ʎǝH")
             int("ʎǝH")
@@ -127,17 +141,17 @@ async def on_message(message):
                 else:
                     lids.append(message.author.name);
                     lhcs.append(1);
-        scr.addmsg(message.content.replace("\n","\\n"))
+
 
 
     except Exception as e:
-        await client.send_message(message.channel,"I F*CKED UP:\n```py\n"+str(e)+"```\nTo report the error go to: https://discord.gg/djFFREv")
+        await client.send_message(client.get_channel('438028465921589250'),"I F*CKED UP:\n```py\n"+str(e)+"```\nTo report the error go to: https://discord.gg/djFFREv")
         el = open("error.log",'a')
         el.write("\n"+str(e)+"\n")
         el.close()
-        scr.addmsg(e.replace("\n","\\n"))
+        disp.info.add_error(str(e))
     print("draw")
-    scr.draw()
+    d.scr.draw()
 
 def runbot():
     try:
@@ -146,8 +160,8 @@ def runbot():
             try:
                 loop.run_until_complete(client.run(fn.gt(0)))
             except Exception as e:
-                scr.addmsg(str(e).replace("\n","\\n"))
-                scr.addmsg('Attempting to reboot in 30 seconds')
+                d.scr.addmsg(str(e).replace("\n","\\n"))
+                d.scr.addmsg('Attempting to reboot in 30 seconds')
                 loop=None
                 time.sleep(30)
     except:
@@ -157,8 +171,8 @@ runbot()
 #         loop = asyncio.get_event_loop()
 #         while True:
 #             loop.run_until_complete(client.run(fn.gt(0)))
-#         scr.info.Status = "Restarting Loop"
-#         scr.draw()
+#         d.scr.info.Status = "Restarting Loop"
+#         d.scr.draw()
 #         var.oc += 1
 # try:
 #     runbot()
