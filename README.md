@@ -6,7 +6,13 @@ You can use the invite link to add it to one of the servers you manage or host i
 Uptime is not great.
 [invite](https://discordapp.com/api/oauth2/authorize?client_id=538309371722072065&permissions=8&scope=bot)
 
-
+## Pros:
+- Opensource
+## Cons:
+- Limited responses
+- Baddly coded
+- Uptime is not great
+- ECT
 ## What does it do
 ```yml
 Prefix: '-'
@@ -15,7 +21,7 @@ vsauce:             quotes him
 icon:               uploads avatar
 meme:               uploads meme
 ping:               find the delay speed
-  -d                for debug menu
+  -d                for debug mode (just gives more vairables)
 online:             checks if hey bot is online or not
 lb:                 leaderboard is printed (lag may occure)
 stats:              prints the stats
