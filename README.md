@@ -17,10 +17,23 @@ stats:              prints the stats
 force-error:        forces an error
 display-update:     Updates the screen
 ```
-Example:
+### Examples:
+Ex 1)
 ```yml
 me: -hi
 bot: wassup
+```
+Ex 2)
+Example:
+```yml
+me: -ping -d
+bot:  Ping Request:
+      User: [USERNAME];
+      Size: 8;
+      Recieved-Latency: 00.105625s
+      Send-Latency: 00.175876s
+      Total-Latency: 00.281288s
+      ID-Tag: 0x2249
 ```
 ## Bugs:
 Double messages with screen at the momment and some bad code on the status line in the display.
