@@ -1,6 +1,11 @@
 # Hey! Bot
 ## Basic
 A [Discord](http://discord.gg) Bot I made with Python.<br/>
+# How to add
+You can use the invite link to add it to one of the servers you manage or host it your self with your own link.<br/>
+Uptime is not great.
+[invite](https://discordapp.com/api/oauth2/authorize?client_id=538309371722072065&permissions=8&scope=bot)
+
 
 ## What does it do
 ```yml
@@ -42,5 +47,5 @@ bot:  Ping Request:
 Double messages with screen at the momment and some bad code on the status line in the display.
 
 ## Rules:
-### Don't sell code!
+### Don't sell code! 
 ### Don't forget to credit me [@Haz001](https://github.com/Haz001)
