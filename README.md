@@ -35,6 +35,9 @@ bot:  Ping Request:
       Total-Latency: 00.281288s
       ID-Tag: 0x2249
 ```
+## Screenshots:
+
+![Screenshot 1](https://raw.githubusercontent.com/Haz001/Discord-Bot-Hey/master/screenshot1.png)
 ## Bugs:
 Double messages with screen at the momment and some bad code on the status line in the display.
 
